@@ -12,6 +12,7 @@ namespace InsuranceAPI.Infrastructure.Services.Interfaces
         Task RevokeToken(string token, string ipAddress);
         Task<IEnumerable<User>> GetAll();
         Task<User> GetById(ObjectId id);
+        Task<User> GetByUsername(string username);
         Task Register(RegistrationRequestDTO model);
         Task Update(ObjectId id, UpdateRequestDTO model);
         Task Delete(ObjectId id);

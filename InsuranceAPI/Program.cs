@@ -45,6 +45,7 @@ builder.Services.AddSingleton<IRefreshTokenRespository, RefreshTokenRepository>(
 #region Services
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IClientsService, ClientsService>();
 #endregion
 
 builder.Services.AddControllers();

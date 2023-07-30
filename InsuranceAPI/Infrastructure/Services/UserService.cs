@@ -113,6 +113,13 @@ namespace InsuranceAPI.Infrastructure.Services
             return user ?? throw new KeyNotFoundException(id.ToString());
         }
 
+        public async Task<User> GetByUsername(string username)
+        {
+            var user = await _usersRepository.GetByUsername(username);
+
+            return user ?? throw new KeyNotFoundException(username);
+        }
+
         public async Task Register(RegistrationRequestDTO model)
         {
             await IsUserNameAvailable(model.UserName);

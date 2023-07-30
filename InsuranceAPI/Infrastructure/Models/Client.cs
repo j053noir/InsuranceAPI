@@ -1,4 +1,6 @@
-﻿using MongoDB.Bson;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 using System.ComponentModel;
 
 namespace InsuranceAPI.Infrastructure.Models
@@ -12,6 +14,10 @@ namespace InsuranceAPI.Infrastructure.Models
         public string IdentificationType { get; set; }
         public DateTime DateOfBirth { get; set; }
         public ContactInformation ContactInformation { get; set; }
+        public MongoDBRef UserId { get; set; }
+
+        [BsonIgnore]
+        public User User { get; set; }
     }
 
     public class ClientReference
