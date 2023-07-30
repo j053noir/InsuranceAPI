@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace InsuranceAPI.Infrastructure.Models
 {
@@ -12,6 +13,8 @@ namespace InsuranceAPI.Infrastructure.Models
         public List<ClientReference> Clients { get; set; }
         public PolicyPlan Plan { get; set; }
         public Vehicle Vehicle { get; set; }
+
+        [BsonIgnoreIfNull]
         public Inspection? Inspection { get; set; }
 
         public Dictionary<string, string> AdditionalInfo { get; set; }
