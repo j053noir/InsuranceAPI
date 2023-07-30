@@ -1,6 +1,6 @@
 using InsuranceAPI.Infrastructure.Models;
 using InsuranceAPI.Infrastructure.Repositories;
-using InsuranceAPI.Infrastructure.Respositories.Interfaces;
+using InsuranceAPI.Infrastructure.Repositories.Interfaces;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);

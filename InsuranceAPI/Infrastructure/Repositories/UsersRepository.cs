@@ -1,5 +1,5 @@
 ﻿using InsuranceAPI.Infrastructure.Models;
-using InsuranceAPI.Infrastructure.Respositories.Interfaces;
+using InsuranceAPI.Infrastructure.Repositories.Interfaces;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -17,6 +17,7 @@ namespace InsuranceAPI.Infrastructure.Repositories
 
             _collection = database.GetCollection<User>(usersCollectionName);
         }
+
         public async Task Add(User entity)
         {
             await _collection.InsertOneAsync(entity);
@@ -27,9 +28,14 @@ namespace InsuranceAPI.Infrastructure.Repositories
             await _collection.DeleteOneAsync(x => x.Id == id);
         }
 
+        public async Task<User> GetByUsername(string username)
+        {
+            return await _collection.Find(x => x.UserName == username).FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<User>> GetAll()
         {
-            return await _collection.Find(_ => true).ToListAsync();
+            return await _collection.Find(x => x.IsActive).ToListAsync();
         }
 
         public async Task<User> GetById(ObjectId id)
@@ -40,6 +46,11 @@ namespace InsuranceAPI.Infrastructure.Repositories
         public async Task Update(ObjectId id, User entity)
         {
             await _collection.ReplaceOneAsync(x => x.Id == id, entity);
+        }
+
+        public async Task<User> GetByRefreshToken(string token)
+        {
+            return await _collection.Find(x => x.RefreshTokens.Any(y => y.Token == token)).FirstOrDefaultAsync();
         }
     }
 }

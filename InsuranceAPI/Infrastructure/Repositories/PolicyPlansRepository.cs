@@ -1,5 +1,5 @@
 ﻿using InsuranceAPI.Infrastructure.Models;
-using InsuranceAPI.Infrastructure.Respositories.Interfaces;
+using InsuranceAPI.Infrastructure.Repositories.Interfaces;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
