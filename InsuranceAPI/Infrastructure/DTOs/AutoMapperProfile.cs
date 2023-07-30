@@ -8,7 +8,9 @@ namespace InsuranceAPI.Infrastructure.DTOs
     {
         public AutoMapperProfile()
         {
-            
+            CreateMap<RegistrationRequestDTO, User>();
+            CreateMap<RegistrationRequestDTO, AuthenticationRequestDTO>();
+            CreateMap<User, UserReponseDTO>();
         }
     }
 }
