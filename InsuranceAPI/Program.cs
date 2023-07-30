@@ -1,6 +1,8 @@
 using InsuranceAPI.Infrastructure.Models;
 using InsuranceAPI.Infrastructure.Repositories;
 using InsuranceAPI.Infrastructure.Repositories.Interfaces;
+using InsuranceAPI.Infrastructure.Services;
+using InsuranceAPI.Infrastructure.Services.Interfaces;
 using InsuranceAPI.Utils.Middlewares;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
@@ -38,6 +40,11 @@ builder.Services.AddSingleton<IPolicyPlansRepository, PolicyPlansRepository>();
 builder.Services.AddSingleton<IUsersRepository, UsersRepository>();
 builder.Services.AddSingleton<IVehiclesRepository, VehicleRepository>();
 builder.Services.AddSingleton<IRefreshTokenRespository, RefreshTokenRepository>();
+#endregion
+
+#region Services
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<IUserService, UserService>();
 #endregion
 
 builder.Services.AddControllers();
