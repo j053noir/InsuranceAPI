@@ -35,6 +35,7 @@ builder.Services.AddSingleton<IInsurancePoliciesRepository, InsurancePoliciesRep
 builder.Services.AddSingleton<IPolicyPlansRepository, PolicyPlansRepository>();
 builder.Services.AddSingleton<IUsersRepository, UsersRepository>();
 builder.Services.AddSingleton<IVehiclesRepository, VehicleRepository>();
+builder.Services.AddSingleton<IRefreshTokenRespository, RefreshTokenRepository>();
 #endregion
 
 builder.Services.AddControllers();

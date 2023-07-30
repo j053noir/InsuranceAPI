@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace InsuranceAPI.Infrastructure.Models
 {
@@ -7,9 +8,14 @@ namespace InsuranceAPI.Infrastructure.Models
     {
         public ObjectId Id { get; set; }
         public string UserName { get; set; }
-        public string Password { get; set; }
         public UserRole Role { get; set; } = UserRole.Client;
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
+
+        [JsonIgnore]
+        public string Password { get; set; }
+
+        [JsonIgnore]
+        public List<RefreshToken> RefreshTokens { get; set; }
     }
 
     public enum UserRole
