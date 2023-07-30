@@ -1,4 +1,4 @@
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using System.ComponentModel;
@@ -22,8 +22,11 @@ namespace InsuranceAPI.Infrastructure.Models
 
     public class ClientReference
     {
-        public ObjectId Id { get; set; }
+        public MongoDBRef ClientId { get; set; }
         public ClientRole Role { get; set; }
+
+        [BsonIgnore]
+        public Client Client { get; set; }
     }
 
     public enum ClientRole

@@ -10,7 +10,7 @@ using MongoDB.Driver;
 
 namespace InsuranceAPI.Controllers
 {
-    //[Authorize(UserRole.Administrator)]
+    [Authorize(UserRole.Administrator)]
     [ApiController]
     [Route("api/[controller]")]
     public class ClientController : Controller
@@ -44,8 +44,7 @@ namespace InsuranceAPI.Controllers
 
             foreach (var client in clients)
             {
-                var userId = client.UserId.Id.AsObjectId;
-                client.User = await _userService.GetById(userId);
+                await SetUser(client);
             }
 
             return Json(_mapper.Map<IEnumerable<ClientResponseDTO>>(clients));
@@ -56,11 +55,7 @@ namespace InsuranceAPI.Controllers
         {
             var client = await _clientService.GetById(id);
 
-            if (client != null)
-            {
-                var userId = client.UserId.Id.AsObjectId;
-                client.User = await _userService.GetById(userId);
-            }
+            await SetUser(client);
 
             return Json(_mapper.Map<ClientResponseDTO>(client));
         }
@@ -86,6 +81,12 @@ namespace InsuranceAPI.Controllers
             await _clientService.Create(client);
 
             return Json(new { message = "Client created successfully " });
+        }
+
+        private async Task SetUser(Client client)
+        {
+            var userId = client.UserId.Id.AsObjectId;
+            client.User = await _userService.GetById(userId);
         }
     }
 }
