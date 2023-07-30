@@ -1,6 +1,7 @@
 using InsuranceAPI.Infrastructure.Models;
 using InsuranceAPI.Infrastructure.Repositories;
 using InsuranceAPI.Infrastructure.Repositories.Interfaces;
+using InsuranceAPI.Utils.Middlewares;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,7 +55,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.MapControllers();
 
