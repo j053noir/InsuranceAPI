@@ -10,5 +10,6 @@
         public string? VehiclesCollectionName { get; set; } = null;
         public string? InspectionsCollectionName { get; set; } = null;
         public string? UsersCollectionName { get; set; } = null;
+        public string? RefreshTokensCollectionName { get; set; } = null;
     }
 }

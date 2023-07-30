@@ -1,3 +1,4 @@
+using InsuranceAPI.Infrastructure.Models;
 using InsuranceAPI.Infrastructure.Repositories;
 using InsuranceAPI.Infrastructure.Respositories.Interfaces;
 using MongoDB.Driver;
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
 
 // Add services to the container.
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
 #region Configure Database
 string databaseConnectionString = configuration.GetConnectionString("MongoDatabase");
