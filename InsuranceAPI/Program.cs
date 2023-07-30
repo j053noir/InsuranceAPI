@@ -22,6 +22,9 @@ builder.Services.Configure<InsuranceAPI.Infrastructure.Models.MongoDatabaseSetti
                                         (builder.Configuration.GetSection("MongoDatabase"));
 #endregion
 
+// Add automapper
+builder.Services.AddAutoMapper(typeof(Program));
+
 #region Repositories
 builder.Services.AddSingleton<IClientsRepository, ClientsRepository>();
 builder.Services.AddSingleton<IContactInformationRepository, ContactInformationRepository>();
