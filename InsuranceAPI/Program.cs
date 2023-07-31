@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using InsuranceAPI.Infrastructure.Models;
 using InsuranceAPI.Infrastructure.Repositories;
 using InsuranceAPI.Infrastructure.Repositories.Interfaces;
@@ -6,6 +7,7 @@ using InsuranceAPI.Infrastructure.Services.Interfaces;
 using InsuranceAPI.Utils.Middlewares;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
@@ -50,6 +52,17 @@ builder.Services.AddScoped<IInsurancePoliciesService, InsurancePoliciesService>(
 #endregion
 
 builder.Services.AddControllers();
+
+// NOTE: AddFluentValidation required, other methods not working as expected
+builder.Services.AddFluentValidation(options =>
+{
+    // Validate child properties and root collection elements
+    options.ImplicitlyValidateChildProperties = true;
+    options.ImplicitlyValidateRootCollectionElements = true;
+
+    // Automatic registration of validators in assembly
+    options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(opt =>
