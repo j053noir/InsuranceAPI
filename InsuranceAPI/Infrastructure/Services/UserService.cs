@@ -132,7 +132,7 @@ namespace InsuranceAPI.Infrastructure.Services
             await _usersRepository.Add(user);
         }
 
-        public async Task Update(ObjectId id, UpdateRequestDTO model)
+        public async Task Update(ObjectId id, UpdateUserRequestDTO model)
         {
             var user = await GetById(id);
 

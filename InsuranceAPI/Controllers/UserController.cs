@@ -52,7 +52,7 @@ namespace InsuranceAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromRoute] string id, [FromBody] UpdateRequestDTO model)
+        public async Task<IActionResult> Update([FromRoute] string id, [FromBody] UpdateUserRequestDTO model)
         {
             await _userService.Update(new ObjectId(id), model);
             return Json(new { message = "User updated successfully" });

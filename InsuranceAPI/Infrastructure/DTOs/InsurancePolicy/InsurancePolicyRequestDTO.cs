@@ -8,13 +8,13 @@ namespace InsuranceAPI.Infrastructure.DTOs.InsurancePolicy
         [Required]
         public string PolicyNumber { get; set; }
 
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime? CreatedDate { get; set; } = DateTime.Now;
 
         [Required]
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
         [Required]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         [Required]
         public IDictionary<string, ClientRole> Clients { get; set; }
@@ -37,14 +37,14 @@ namespace InsuranceAPI.Infrastructure.DTOs.InsurancePolicy
         [Required]
         public string RegistrationPlate { get; set; }
 
-        [Required]
-        public VehicleType VehicleType { get; set; }
+        [Required, EnumDataType(typeof(VehicleType))]
+        public VehicleType? VehicleType { get; set; }
 
-        public DateTime InspectionDate { get; set; }
+        public DateTime? InspectionDate { get; set; }
 
-        public string InspectorName { get; set; }
+        public string? InspectorName { get; set; }
 
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
     }
 }

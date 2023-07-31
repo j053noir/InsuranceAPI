@@ -11,6 +11,7 @@ namespace InsuranceAPI.Infrastructure.DTOs.Users
         [Required]
         public string? Password { get; set; }
 
-        public UserRole Role { get; set; } = UserRole.Client;
+        [EnumDataType(typeof(UserRole))]
+        public UserRole? Role { get; set; } = UserRole.Client;
     }
 }

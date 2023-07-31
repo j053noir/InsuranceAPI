@@ -5,8 +5,8 @@ namespace InsuranceAPI.Infrastructure.DTOs.Client
 {
     public class CreateClientRequestDTO
     {
-        [Required]
-        public ClientRole Role { get; set; }
+        [Required, EnumDataType(typeof(ClientRole))]
+        public ClientRole? Role { get; set; }
 
         [Required]
         public string UserName { get; set; }
@@ -29,17 +29,17 @@ namespace InsuranceAPI.Infrastructure.DTOs.Client
         [Required]
         public DateTime DateOfBirth { get; set; }
 
-        [Required]
+        [Required, EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required, EmailAddress]
         public string CofirmEmail { get; set; }
 
         [Required]
         public string Phone { get; set; }
 
         [Required]
-        public string CofirmPhone { get; set; }
+        public string ConfirmPhone { get; set; }
 
         [Required]
         public string Street { get; set; }
